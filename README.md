@@ -1,5 +1,9 @@
+## 🚀 Arrr-Dash App
+
 <img width="2419" height="1840" alt="arrr-dash" src="https://github.com/user-attachments/assets/a6044001-592f-4e77-9805-95943784ee73" />
-# 🚀 Arrr-Dash
+
+
+## 🚀 Arrr-Dash
 
 Nowoczesny, przejrzysty i responsywny pulpit nawigacyjny (Dashboard) do monitorowania stanu opóźnień ping, statusu usług oraz statystyk w czasie rzeczywistym dla Twojego domowego serwera (Sonarr, Radarr, Jellyfin, Prowlarr, Bazarr, qBittorrent, Transmission, Sabnzbd i innych).
 
@@ -130,6 +134,113 @@ Ponieważ Twoja konfiguracja i zapisane adresy IP znajdują się w bezpiecznym p
   npm run build
   systemctl restart arrr-dash
   ```
+
+---
+
+
+##   🔐 Wystawianie panelu na internet (NGINX Proxy Manager – Basic Auth)
+
+
+Arrr‑Dash można bezpiecznie wystawić na internet, korzystając z NGINX Proxy Manager (NPM).
+Panel zawiera adresy IP, porty i klucze API, dlatego nie wolno wystawiać go bez zabezpieczeń.
+
+✔️ 1. Dodaj nowy Proxy Host
+W NPM:
+
+Hosts → Proxy Hosts → Add Proxy Host
+
+Domain Names: dash.twojadomena.pl
+
+Scheme: http
+
+Forward Hostname/IP: 192.168.1.xx
+
+Forward Port: 3000
+
+Zaznacz:
+
+✔️ Block Common Exploits
+
+✔️ Websockets Support
+
+✔️ 2. Włącz HTTPS (Let’s Encrypt)
+W zakładce SSL:
+
+Request a new SSL Certificate
+
+✔️ Force SSL
+
+✔️ HTTP/2 Support
+
+✔️ HSTS (opcjonalnie)
+
+✔️ 3. Dodaj logowanie (Access List – Basic Auth)
+W NPM:
+
+Access List → Add Access List
+
+Dodaj użytkownika:
+
+Login: admin
+
+Hasło: mocne hasło
+
+Następnie przypisz Access List do Proxy Host.
+
+Dzięki temu panel wymaga logowania przed wejściem.
+
+✔️ 4. Zablokuj dostęp do API z internetu
+W Proxy Host → Advanced → Custom Nginx Configuration:
+
+ ```bash
+  location /api {
+    allow 192.168.0.0/16;
+    allow 127.0.0.1;
+    deny all;
+}
+  ```
+Panel działa normalnie, ale API Sonarr/Radarr/Jellyfin jest dostępne tylko lokalnie.
+
+✔️ 5. Opcjonalnie: Cloudflare Firewall
+Jeśli domena jest pod Cloudflare:
+
+DDoS protection
+
+Bot protection
+
+Geo‑block
+
+Rate limiting
+
+---
+
+##   🗺️ Roadmap / Plany na przyszłość
+
+
+[ ] Logowanie użytkowników (admin / kids)
+
+[ ] Tryb dziecięcy – uproszczony panel tylko dla Sonarr/Radarr/Lidarr
+
+[ ] Oddzielny layout dla dzieci (bez statystyk serwera, bez konfiguracji)
+
+[ ] Historia opóźnień (wykresy ping)
+
+[ ] Integracja z Bazarr API
+
+[ ] Tryb jasny (Light Mode)
+
+[ ] Widget mini‑statusu
+
+[ ] Poprawka modala – test IP nie zamyka okna
+
+[ ] Logowanie przez Google / Discord (opcjonalnie)
+
+---
+
+##  🐞 Znane błędy
+
+
+Test IP w oknie dodawania usługi zamyka modal (poprawka w toku)
 
 ---
 
