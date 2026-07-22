@@ -1,3 +1,4 @@
+<img width="2419" height="1840" alt="arrr-dash" src="https://github.com/user-attachments/assets/a6044001-592f-4e77-9805-95943784ee73" />
 # 🚀 Arrr-Dash
 
 Nowoczesny, przejrzysty i responsywny pulpit nawigacyjny (Dashboard) do monitorowania stanu opóźnień ping, statusu usług oraz statystyk w czasie rzeczywistym dla Twojego domowego serwera (Sonarr, Radarr, Jellyfin, Prowlarr, Bazarr, qBittorrent, Transmission, Sabnzbd i innych).
