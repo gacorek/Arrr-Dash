@@ -1,0 +1,6 @@
+{
+  "name": "Arrr-Dash",
+  "description": "Dashboard do monitorowania serwerów Arrr-Dash (Sonarr, Radarr, Jellyfin, Prowlarr) z powiadomieniami i integracją Discord.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
